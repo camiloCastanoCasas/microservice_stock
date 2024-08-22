@@ -1,5 +1,10 @@
 package com.emazon.microservice.stock.stock.domain.model;
 
+import static java.util.Objects.requireNonNull;
+
+import com.emazon.microservice.stock.stock.domain.exceptions.EmptyFieldException;
+import com.emazon.microservice.stock.stock.domain.exceptions.FieldTooLongException;
+
 public class Category {
     
     private Long id;
@@ -7,17 +12,17 @@ public class Category {
     private String description;
 
     public Category(Long id, String name, String description) {
-        if(name.isEmpty()) {
-            throw new IllegalArgumentException("Category name cannot be null or empty");
+        if(name.trim().isEmpty()) {
+            throw new EmptyFieldException("Category name cannot be null or empty");
         }
         if(name.length() > 50) {
-            throw new IllegalArgumentException("Category name cannot be longer than 50 characters");
+            throw new FieldTooLongException("Category name cannot be longer than 50 characters");
         }
         if(description.isEmpty()) {
-            throw new IllegalArgumentException("Category description cannot be null or empty");
+            throw new EmptyFieldException("Category description cannot be null or empty");
         }
         if(description.length() > 90) {
-            throw new IllegalArgumentException("Category description cannot be longer than 255 characters");
+            throw new FieldTooLongException("Category description cannot be longer than 90 characters");
         }
         this.id = id;
         this.name = name;
