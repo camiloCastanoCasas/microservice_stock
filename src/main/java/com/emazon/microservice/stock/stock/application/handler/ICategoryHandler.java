@@ -4,6 +4,6 @@ import com.emazon.microservice.stock.stock.application.dto.request.CategoryReque
 
 public interface ICategoryHandler {
 
-    void createCategory(CategoryRequest createCategoryRequest);
+    void createCategory(CategoryRequest CategoryRequest);
 
 }
